@@ -20,3 +20,21 @@ def jobs_index(request):
     # insert jobs model here
 
     return render(request, 'jobs/index.html')
+
+def jobs_detail(request, job_id):
+    # insert jobs model here
+    return render(request, 'jobs/detail.html')
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid signup data - please try again'
+    
+    form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message })
