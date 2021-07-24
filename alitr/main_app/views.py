@@ -92,8 +92,8 @@ class ProfileCreate(CreateView):
 
 class ProfileUpdate(UpdateView):
   model = Profile
-  fields = ['name', 'email']
-
+  fields = '__all__'
+  
 class ProfileDelete(DeleteView):
   model = Profile
   success_url = '/profiles/'
