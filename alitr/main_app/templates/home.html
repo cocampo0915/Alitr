@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="homepage-wrapper">
 
-<h1>ALITR</h1>
-{% load static %} <img src="{% static 'images/logo.png' %}" alt="home"   />
-<p>Job application tracking made simple</p>
+    <div class="homepage-elements">
+        <h1>ALITR</h1>
+        {% load static %} <img src="{% static 'images/logo.png' %}" alt="home"   />
+        <p>Job application tracking made simple</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'index' %}">Enter</a>
+        {% else %}
+        <p>
+            <a href="{% url 'login' %}">Login</a> or <a href="{% url 'signup' %}">Signup</a>
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+
+
 
 
 
