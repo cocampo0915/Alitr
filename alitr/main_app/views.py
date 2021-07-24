@@ -3,6 +3,9 @@ from .models import Job_application, Status
 from os import error
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+from .models import Profile
+
 
 
 # imports for user authentication
@@ -75,3 +78,22 @@ def add_status(request, job_id):
         new_status.save()
     
     return redirect('detail', job_id=job_id)
+
+#ProfileViews
+class ProfileList(ListView):
+  model = Profile
+
+class ProfileDetail(DetailView):
+  model = Profile
+
+class ProfileCreate(CreateView):
+  model = Profile
+  fields = '__all__'
+
+class ProfileUpdate(UpdateView):
+  model = Profile
+  fields = ['name', 'email']
+
+class ProfileDelete(DeleteView):
+  model = Profile
+  success_url = '/profiles/'
