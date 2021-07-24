@@ -71,8 +71,8 @@ class Status(models.Model):
 
 #User Profile model 
 class Profile(models.Model):
-  name = models.CharField(max_length=50)
-  email = models.CharField(max_length=20)
+  name = models.CharField(max_length=100)
+  email = models.CharField(max_length=100)
   experience = models.TextField(max_length=500,
         blank=True)
   goals = models.TextField(max_length=500,
