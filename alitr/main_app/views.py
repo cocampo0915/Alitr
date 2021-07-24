@@ -83,8 +83,11 @@ def add_status(request, job_id):
 class ProfileList(ListView):
   model = Profile
 
-class ProfileDetail(DetailView):
-  model = Profile
+def profile(request):
+    user = request.user
+    profile = Profile.objects.get()
+
+    return render(request, 'profile.html', {'user': user, 'profile': profile})
 
 class ProfileCreate(CreateView):
   model = Profile
@@ -96,4 +99,4 @@ class ProfileUpdate(UpdateView):
   
 class ProfileDelete(DeleteView):
   model = Profile
-  success_url = '/profiles/'
+  success_url = '/profile/'

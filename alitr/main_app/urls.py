@@ -18,11 +18,10 @@ urlpatterns = [
     # User
     path('accounts/signup', views.signup, name='signup'),
     #Profile
-    path('profiles/', views.ProfileList.as_view(), name='profiles_index'),
-    path('profiles/<int:pk>/', views.ProfileDetail.as_view(), name='profiles_detail'),
-    path('profiles/create/', views.ProfileCreate.as_view(), name='profiles_create'),
-    path('profiles/<int:pk>/update/', views.ProfileUpdate.as_view(), name='profiles_update'),
-    path('profiles/<int:pk>/delete/', views.ProfileDelete.as_view(), name='profiles_delete'),
+    path('profile/', views.profile, name='profile'),
+    path('profile/create/', views.ProfileCreate.as_view(), name='profile_create'),
+    path('profile/<int:pk>/update/', views.ProfileUpdate.as_view(), name='profile_update'),
+    path('profile/<int:pk>/delete/', views.ProfileDelete.as_view(), name='profile_delete'),
     
 ]
 
