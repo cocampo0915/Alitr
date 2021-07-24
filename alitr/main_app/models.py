@@ -68,3 +68,19 @@ class Status(models.Model):
     ordering = ['-date']
 
 # placeholder for Company model if possible -CO
+
+#User Profile model 
+class Profile(models.Model):
+  name = models.CharField(max_length=50)
+  email = models.CharField(max_length=20)
+  experience = models.TextField(max_length=500,
+        blank=True)
+  goals = models.TextField(max_length=500,
+        blank=True)
+
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('profiles_detail', kwargs={'pk': self.id})
