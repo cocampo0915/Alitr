@@ -1,6 +1,7 @@
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 from django.urls import reverse #matching url
 
 # Create your models here.
@@ -71,16 +72,17 @@ class Status(models.Model):
 
 #User Profile model 
 class Profile(models.Model):
-  name = models.CharField(max_length=100)
-  email = models.CharField(max_length=100)
-  experience = models.TextField(max_length=500,
-        blank=True)
-  goals = models.TextField(max_length=500,
-        blank=True)
-
+  experience = models.TextField(
+    max_length=500,
+    blank=True
+  )
+  goals = models.TextField(
+    max_length=500,
+    blank=True
+  )
 
   def __str__(self):
     return self.name
 
   def get_absolute_url(self):
-    return reverse('profiles_detail', kwargs={'pk': self.id})
+    return reverse('profile')
