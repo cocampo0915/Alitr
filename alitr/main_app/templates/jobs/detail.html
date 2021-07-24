@@ -3,4 +3,68 @@
 
 <h1>Job Application Details</h1>
 
+<div class="row">
+    <div class="card">
+        <div class="card-content">
+            <p><b>Job Title:</b> {{ job.name }}</p>
+            <p><b>Company:</b> {{ job.company }}</p>
+            <p><b>Location:</b> {{ job.location }}</p>
+            <p><b>Date Applied:</b> {{ job.date }}</p>
+            <p><b>Status:</b> {{ status }}</p>
+        </div>
+    </div>        
+    <div class="card">
+        <div class="card-detail">
+            <form action="{% url 'add_status' job.id %}" method="post">
+                {% csrf_token %}
+                {{ status_form.as_p }}
+                <input type="submit" value="Update Status" class="btn">
+            </form>
+            <table class="striped">
+                <thead>
+                  <tr><th>Date</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  {% for status in job.status_set.all %}
+                    <tr>
+                      <td>{{ status.date }}</td>
+                      <td>{{ status.get_status_display}}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>            
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <h5>Requirements</h5>
+            <p>
+                {{ job.requirements }}
+            </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <h5>Notes</h5>
+            <p>
+               {{ job.notes }} 
+            </p>
+        </div>
+    </div>
+    <a href="{% url 'jobs_update' job.id %}">Edit</a>
+    <a href="{% url 'jobs_delete' job.id %}">Delete</a>
+</div>
+
+<script>
+    // create datepicker
+    var dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+      format: 'yyyy-mm-dd',
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true,
+    });
+  
+</script>
+
 {% endblock %}

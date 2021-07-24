@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if object %}
+    <h1>Edit Job Application</h1>
+  {% else %}
+    <h1>Add Job Application</h1>
+  {% endif %}
+  <!-- Leaving the action empty makes the form post to the same url used to display it -->
+  <form action="" method="post">
+    <!-- Django requires the following for security purposes -->
+    {% csrf_token %}
+    <table>
+      <!-- Render the inputs inside of <tr>s & <td>s -->
+      {{ form.as_table }}
+    </table>
+    <br>
+    <input type="submit" value="Submit" class="btn">
+  </form>
+
+<script>
+  // create datepicker
+  var dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true,
+  });
+
+</script>
+
+
+  {% endblock %}
