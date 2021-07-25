@@ -72,17 +72,16 @@ class Status(models.Model):
 
 #User Profile model 
 class Profile(models.Model):
-  experience = models.TextField(
-    max_length=500,
-    blank=True
-  )
-  goals = models.TextField(
-    max_length=500,
-    blank=True
-  )
+  name = models.CharField(max_length=100)
+  email = models.CharField(max_length=100)
+  experience = models.TextField(max_length=500,
+        blank=True)
+  goals = models.TextField(max_length=500,
+        blank=True)
+
 
   def __str__(self):
     return self.name
 
   def get_absolute_url(self):
-    return reverse('profile')
+    return reverse('profile_detail', kwargs={'pk': self.id}) 

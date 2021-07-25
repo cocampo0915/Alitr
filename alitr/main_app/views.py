@@ -83,11 +83,8 @@ def add_status(request, job_id):
 class ProfileList(ListView):
   model = Profile
 
-def profile(request):
-    user = request.user
-    profile = Profile.objects.get()
-
-    return render(request, 'profile.html', {'user': user, 'profile': profile})
+class ProfileDetail(DetailView):
+  model = Profile
 
 class ProfileCreate(CreateView):
   model = Profile
