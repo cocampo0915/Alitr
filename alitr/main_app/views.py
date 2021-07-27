@@ -24,12 +24,18 @@ def about(request):
     return render(request, 'about.html')
 
 def jobs_index(request):
-    # insert jobs model here
     jobs = Job_application.objects.filter(user=request.user).order_by('-date')
-    return render(request, 'jobs/index.html', {'jobs': jobs})
+    statuses = []
+    for job in jobs:
+        latest_status = Status.objects.filter(job_app=job).first()
+        statuses.append(latest_status)
+    
+    return render(request, 'jobs/index.html', {
+        'jobs': jobs, 
+        'statuses': statuses,
+    })
 
 def jobs_detail(request, job_id):
-    # insert jobs model here
     job = Job_application.objects.get(id=job_id)
     status_form = StatusForm()
     status = Status.objects.filter(job_app=job_id).first()
@@ -74,7 +80,7 @@ def add_status(request, job_id):
     form = StatusForm(request.POST)
     if form.is_valid():
         new_status = form.save(commit=False)
-        new_status.job_id = job_id
+        new_status.job_app_id = job_id
         new_status.save()
     
     return redirect('detail', job_id=job_id)
@@ -83,8 +89,11 @@ def add_status(request, job_id):
 class ProfileList(ListView):
   model = Profile
 
-class ProfileDetail(DetailView):
-  model = Profile
+def profile(request):
+    user = request.user
+    profile = Profile.objects.get()
+
+    return render(request, 'profile.html', {'user': user, 'profile': profile})
 
 class ProfileCreate(CreateView):
   model = Profile
@@ -96,4 +105,4 @@ class ProfileUpdate(UpdateView):
   
 class ProfileDelete(DeleteView):
   model = Profile
-  success_url = '/profiles/'
+  success_url = '/profile/'
