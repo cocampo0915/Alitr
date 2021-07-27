@@ -61,3 +61,7 @@ select {
 a:hover {
   color: #CB7F29
 }
+
+.job-details {
+  font-size: 1.3rem;
+}
