@@ -1,29 +1,115 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>All Job Applications</h1>
-
-{% for job in jobs %}
-    <a href="{% url 'detail' job.id %}">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ job.name }}</span>
-                <p>{{ job.company }}</p>
-                <p>{{ job.location }}</p>
-            </div>
-        </div>
-    </a>
-{% endfor %}
+<h3 class="center">All Job Applications</h3>
 
 <div class="row">
     <div class="col s4">
-        <h3 class="center">New Jobs</h3>
+        <h4 class="center">New Jobs</h4>
+        {% for status in statuses %}
+            {% if status.status == 'A' %}
+                <a href="{% url 'detail' status.job_app.id %}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{ status.job_app.name }}</span>
+                            <p>{{ status.job_app.company }}</p>
+                            <p>{{ status.job_app.location }}</p>
+                            <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="col s4">
+        <h4 class="center">In Progress</h4>
+        {% for status in statuses %}
+            {% if status.status == 'B' %}
+            <a href="{% url 'detail' status.job_app.id %}">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ status.job_app.name }}</span>
+                        <p>{{ status.job_app.company }}</p>
+                        <p>{{ status.job_app.location }}</p>
+                        <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                    </div>
+                </div>
+            </a>
+            {% elif status.status == 'C' %}
+            <a href="{% url 'detail' status.job_app.id %}">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ status.job_app.name }}</span>
+                        <p>{{ status.job_app.company }}</p>
+                        <p>{{ status.job_app.location }}</p>
+                        <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                    </div>
+                </div>
+            </a>
+            {% elif status.status == 'D' %}
+            <a href="{% url 'detail' status.job_app.id %}">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ status.job_app.name }}</span>
+                        <p>{{ status.job_app.company }}</p>
+                        <p>{{ status.job_app.location }}</p>
+                        <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="col s4">
-        <h3 class="center">In Progress</h3>
-    </div>
-    <div class="col s4">
-        <h3 class="center">Outcome</h3>
+        <h4 class="center">Outcome</h4>
+        {% for status in statuses %}
+            {% if status.status == 'E' %}
+                <a href="{% url 'detail' status.job_app.id %}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{ status.job_app.name }}</span>
+                            <p>{{ status.job_app.company }}</p>
+                            <p>{{ status.job_app.location }}</p>
+                            <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                        </div>
+                    </div>
+                </a>
+                {% elif status.status == 'F' %}
+            <a href="{% url 'detail' status.job_app.id %}">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ status.job_app.name }}</span>
+                        <p>{{ status.job_app.company }}</p>
+                        <p>{{ status.job_app.location }}</p>
+                        <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                    </div>
+                </div>
+            </a>
+            {% elif status.status == 'G' %}
+            <a href="{% url 'detail' status.job_app.id %}">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ status.job_app.name }}</span>
+                        <p>{{ status.job_app.company }}</p>
+                        <p>{{ status.job_app.location }}</p>
+                        <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                    </div>
+                </div>
+            </a>
+            {% elif status.status == 'H' %}
+            <a href="{% url 'detail' status.job_app.id %}">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ status.job_app.name }}</span>
+                        <p>{{ status.job_app.company }}</p>
+                        <p>{{ status.job_app.location }}</p>
+                        <p>{{ status.get_status_display }} on {{ status.date }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+        {% endfor %}
     </div>   
 </div>
 
