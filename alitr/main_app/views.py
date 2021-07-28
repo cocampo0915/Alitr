@@ -22,6 +22,7 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def jobs_index(request):
     jobs = Job_application.objects.filter(user=request.user).order_by('-date')
     statuses = []
@@ -34,6 +35,7 @@ def jobs_index(request):
         'statuses': statuses,
     })
 
+@login_required
 def jobs_detail(request, job_id):
     job = Job_application.objects.get(id=job_id)
     status_form = StatusForm()
@@ -76,6 +78,7 @@ class JobDelete(LoginRequiredMixin, DeleteView):
     success_url = '/jobs/'
 
 #StatusViews
+@login_required
 def add_status(request, job_id):
     form = StatusForm(request.POST)
     if form.is_valid():
@@ -85,6 +88,7 @@ def add_status(request, job_id):
     
     return redirect('detail', job_id=job_id)
 
+@login_required
 def update_status(request, status_id):
     status = get_object_or_404(Status, id=status_id)
 
@@ -99,7 +103,7 @@ def update_status(request, status_id):
              
     return render(request, 'status/update.html', {'form': form, 'status': status })
 
-
+@login_required
 def delete_status(request, status_id):
     status = get_object_or_404(Status, id=status_id)
     if request.method == 'POST':
@@ -109,13 +113,13 @@ def delete_status(request, status_id):
     return render(request, 'status/delete.html', {'status': status})
 
 #ProfileViews
-class SkillList(ListView):
+class SkillList(LoginRequiredMixin, ListView):
   model = Skill
 
-class SkillDetail(DetailView):
+class SkillDetail(LoginRequiredMixin, DetailView):
   model = Skill
 
-class SkillCreate(CreateView):
+class SkillCreate(LoginRequiredMixin, CreateView):
   model = Skill
   fields = ['name','level']
   
@@ -123,10 +127,10 @@ class SkillCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class SkillUpdate(UpdateView):
+class SkillUpdate(LoginRequiredMixin, UpdateView):
   model = Skill
   fields = ['name','level']
   
-class SkillDelete(DeleteView):
+class SkillDelete(LoginRequiredMixin, DeleteView):
   model = Skill
   success_url = '/skills/'
