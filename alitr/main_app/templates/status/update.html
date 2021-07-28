@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3 class="center">Edit Status</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+            {{ form.as_table }}
+            </table>
+            <br>
+            <input type="submit" value="Submit" class="btn">
+        </form>
+        <br>
+        <a href="{% url 'detail' status.job_app.id %}"><button class="btn">Cancel</button></a>
+
+    <script>
+    // create datepicker
+    var dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true,
+    });
+
+    </script>
+
+{% endblock %}

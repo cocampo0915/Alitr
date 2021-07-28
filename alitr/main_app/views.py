@@ -1,12 +1,11 @@
+from django.http.response import HttpResponseRedirect
 from .forms import StatusForm
 from .models import Job_application, Status,Skill
 from os import error
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-
-
-
 
 # imports for user authentication
 from django.contrib.auth.models import User
@@ -76,6 +75,7 @@ class JobDelete(LoginRequiredMixin, DeleteView):
     model = Job_application
     success_url = '/jobs/'
 
+#StatusViews
 def add_status(request, job_id):
     form = StatusForm(request.POST)
     if form.is_valid():
@@ -84,6 +84,29 @@ def add_status(request, job_id):
         new_status.save()
     
     return redirect('detail', job_id=job_id)
+
+def update_status(request, status_id):
+    status = get_object_or_404(Status, id=status_id)
+
+    if request.method != 'POST':
+        form = StatusForm(instance=status)
+
+    else:
+        form = StatusForm(instance=status, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('detail', args=[status.job_app.id]))
+             
+    return render(request, 'status/update.html', {'form': form, 'status': status })
+
+
+def delete_status(request, status_id):
+    status = get_object_or_404(Status, id=status_id)
+    if request.method == 'POST':
+        status.delete()
+        return HttpResponseRedirect(reverse('detail', args=[status.job_app.id]))
+
+    return render(request, 'status/delete.html', {'status': status})
 
 #ProfileViews
 class SkillList(ListView):

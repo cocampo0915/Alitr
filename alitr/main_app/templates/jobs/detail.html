@@ -42,6 +42,8 @@
                     <tr>
                         <th>Date</th>
                         <th>Status</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +51,8 @@
                     <tr>
                         <td>{{ status.date }}</td>
                         <td>{{ status.get_status_display}}</td>
+                        <td><a href="{% url 'update_status' status.id %}">Edit</a></td>
+                        <td><a href="{% url 'delete_status' status.id %}">Delete</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
