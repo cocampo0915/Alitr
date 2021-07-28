@@ -1,10 +1,10 @@
 from .forms import StatusForm
-from .models import Job_application, Status
+from .models import Job_application, Status,Skill
 from os import error
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Profile
+
 
 
 
@@ -86,23 +86,24 @@ def add_status(request, job_id):
     return redirect('detail', job_id=job_id)
 
 #ProfileViews
-class ProfileList(ListView):
-  model = Profile
+class SkillList(ListView):
+  model = Skill
 
-def profile(request):
-    user = request.user
-    profile = Profile.objects.get()
+class SkillDetail(DetailView):
+  model = Skill
 
-    return render(request, 'profile.html', {'user': user, 'profile': profile})
-
-class ProfileCreate(CreateView):
-  model = Profile
-  fields = '__all__'
-
-class ProfileUpdate(UpdateView):
-  model = Profile
-  fields = '__all__'
+class SkillCreate(CreateView):
+  model = Skill
+  fields = ['name','level']
   
-class ProfileDelete(DeleteView):
-  model = Profile
-  success_url = '/profile/'
+  def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class SkillUpdate(UpdateView):
+  model = Skill
+  fields = ['name','level']
+  
+class SkillDelete(DeleteView):
+  model = Skill
+  success_url = '/skills/'
