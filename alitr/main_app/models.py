@@ -71,18 +71,34 @@ class Status(models.Model):
 # placeholder for Company model if possible -CO
 
 #User Profile model 
-class Profile(models.Model):
-  experience = models.TextField(
-    max_length=500,
-    blank=True
-  )
-  goals = models.TextField(
-    max_length=500,
-    blank=True
+class Skill(models.Model):
+
+  SKILL = (
+    ('1','Level 1'),
+    ('2','Level 2'),
+    ('3','Level 3'),
+    ('4','Level 4'),
+    ('5','Level 5'),
   )
 
+
+  
+  name = models.CharField(
+    max_length=100,
+    blank=True
+  )
+  level = models.CharField(
+    max_length=1,
+    choices=SKILL,
+    default=SKILL[0][0]
+  )
+
+
+  
+
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
   def __str__(self):
     return self.name
 
   def get_absolute_url(self):
-    return reverse('profile')
+    return reverse('skills_detail', kwargs={'pk': self.id})
