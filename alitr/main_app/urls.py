@@ -13,6 +13,8 @@ urlpatterns = [
     path('jobs/<int:pk>/delete/', views.JobDelete.as_view(), name='jobs_delete'),
     # Status
     path('jobs/<int:job_id>/add_status/', views.add_status, name='add_status'),
+    path('status/<int:status_id>/update/', views.update_status, name='update_status'),
+    path('status/<int:status_id>/delete/', views.delete_status, name='delete_status'),
     # Company
 
     # User
