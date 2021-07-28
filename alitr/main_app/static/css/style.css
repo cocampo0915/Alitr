@@ -21,7 +21,7 @@ body {
   main {
     flex: 1 0 auto;
   }
-  
+ 
 select {
   display: initial;
 }
@@ -64,4 +64,24 @@ a:hover {
 
 .job-details {
   font-size: 1.3rem;
+}
+
+.jassmin{
+  flex: 1;
+  padding: 1rem;
+  margin: 2px;
+
+
+}
+
+.camille{
+  flex: 1;
+  padding: 1rem;
+  margin: 2px;
+
+}
+
+.team{
+  display:flex;
+  width: 100%;
 }

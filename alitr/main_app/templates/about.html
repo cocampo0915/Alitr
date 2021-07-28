@@ -1,6 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
-<h1>About Us</h1>
+
+<h2>About ALITR</h2>
+<p>We fueled our passion for coding by joining General Assembly's Software Engineering Immersive bootcamp in February 2021. As a final project, we were challenged to work in a small team and create a full stack application
+    that would implement Python, Django, and PostgreSQL. The name ALITR is inspired by our cohort name and the job hunt process. ALITR gives users the ability to track their job applications with Django's built-in authentication and allows access to the Create, Read, Update, and Delete functions. 
+    
+    We hope you enjoy the job hunt using ALITR!
+    
+</p>
+
+
+<h2>Meet the Team</h2>
+<div class="team">
+      <div class="camille center">  <img src="{% static 'images/camprofile.png' %}" alt="Camille Ocampo"/>
+          <h5>Camille Ocampo</h5> 
+               
+                         <a href="https://github.com/cocampo0915"><img src="{% static 'images/gitmark.png' %}" ></a>
+                         <a href="https://www.linkedin.com/in/camille-ocampo/"><img src="{% static 'images/linkedinlogo.png' %}" width="36" ></a>
+      </div>
+
+     <div class="jassmin center"> <img src="{% static 'images/jassprofile.png' %}" alt="Jassmin Fernandez"/>
+        <h5>Jassmin Fernandez</h5>
+               <a href="https://github.com/jassmin-herr09"><img src="{% static 'images/gitmark.png' %}" > </a>
+               <a href="https://www.linkedin.com/in/jassmin-herr/"><img src="{% static 'images/linkedinlogo.png' %}" width="36" > </a>
+        
+     </div>
+
+</div>
 
 {% endblock %}
