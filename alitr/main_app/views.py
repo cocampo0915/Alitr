@@ -168,7 +168,7 @@ def signup(request):
 
 # Update it here
 @login_required
-def profile(request):
+def profile_update(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -186,7 +186,14 @@ def profile(request):
 
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'profile': request.user.pro
     }
 
     return render(request, 'profile/update.html', context)
+
+def profile(request):
+    profile = request.user.pro
+    skills = Skill.objects.filter(user=request.user)
+
+    return render(request, 'profile/index.html', {'profile': profile, 'user': request.user, 'skills': skills })

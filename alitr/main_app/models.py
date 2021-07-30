@@ -82,8 +82,6 @@ class Skill(models.Model):
     ('5','Level 5'),
   )
 
-
-  
   name = models.CharField(
     max_length=100,
     blank=True
@@ -93,9 +91,6 @@ class Skill(models.Model):
     choices=SKILL,
     default=SKILL[0][0]
   )
-
-
-  
 
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   def __str__(self):
@@ -108,6 +103,8 @@ class Skill(models.Model):
 class Pro(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) # Delete profile when user is deleted
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    experience = models.TextField(max_length=1000, blank=True)
+    goals = models.TextField(max_length=1000, blank=True)
 
     def __str__(self):
         return f'{self.user.username} Pro' #show how we want it to be displayed

@@ -32,4 +32,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Pro
-        fields = ['image']
+        fields = ['image', 'experience', 'goals']
