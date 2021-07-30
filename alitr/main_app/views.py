@@ -4,6 +4,9 @@ from os import error
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.contrib import messages
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm# Import the form we just created
+
 
 
 
@@ -46,7 +49,21 @@ def jobs_detail(request, job_id):
         'status_form': status_form,
     })
 
-def signup(request):
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST) 
+        if form.is_valid():
+            form.save() # Save user to Database
+            username = form.cleaned_data.get('username') # Get the username that is submitted
+            messages.success(request, f'Account created for {username}!') # Show sucess message when account is created
+            return redirect('blog-home') # Redirect user to Homepage
+    else:
+        form = UserRegisterForm()
+    return render(request, 'users/register.html', {'form': form})
+
+
+
+'''def signup(request):
     error_message = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -58,9 +75,9 @@ def signup(request):
             error_message = 'Invalid signup data - please try again'
     
     form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message })
+    return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message })'''
 
-class JobCreate(LoginRequiredMixin, CreateView):
+class JobCreate(CreateView):
     model = Job_application
     fields = ['name', 'company', 'location', 'date', 'url', 'requirements', 'notes']
 
@@ -68,11 +85,11 @@ class JobCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class JobUpdate(LoginRequiredMixin, UpdateView):
+class JobUpdate(UpdateView):
     model = Job_application
     fields = ['name', 'company', 'location', 'date', 'url', 'requirements', 'notes']
 
-class JobDelete(LoginRequiredMixin, DeleteView):
+class JobDelete(DeleteView):
     model = Job_application
     success_url = '/jobs/'
 
@@ -107,3 +124,42 @@ class SkillUpdate(UpdateView):
 class SkillDelete(DeleteView):
   model = Skill
   success_url = '/skills/'
+
+# Register Def
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST) 
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username') 
+            messages.success(request, f'Your account has been created! You are now able to log in') 
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
+# Update it here
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.pro) 
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('profile') # Redirect back to profile page
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.pro)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'profile/update.html', context)
