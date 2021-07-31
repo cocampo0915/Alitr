@@ -5,7 +5,7 @@ ALITR is a full-stack web application built with Python-based Django framework t
 
 ## Getting Started
 
-[Click here](https://alitr.herokuapp.com/) to see the app on Heroku!
+[Click here](https:/.herokuapp.com/) to see the app on Heroku!
 
 ## Technologies Used
 - HTML5
@@ -20,31 +20,31 @@ ALITR is a full-stack web application built with Python-based Django framework t
 
 Home Page
 
-![screenshot](/alitr/main_app/static/images/alitrhomepage.png)
+![screenshot](/main_app/static/images/alitrhomepage.png)
 
 Login and Sign up Page
 
-![screenshot](/alitr/main_app/static/images/alitrloginandsignup.png)
+![screenshot](/main_app/static/images/alitrloginandsignup.png)
 
 After user is logged in, the 'Add job application' Page
 
-![screenshot](/alitr/main_app/static/images/alitraddjob.png)
+![screenshot](/main_app/static/images/alitraddjob.png)
 
 After a job application is added, it is categorized under 'New Jobs', 'In Progress', or 'Outcome'. User can update the status of the job application. 
 
-![screenshot](/alitr/main_app/static/images/alitralljobs.png)
+![screenshot](/main_app/static/images/alitralljobs.png)
 
 Users can edit, or delete the job application as well as the status and date. 
 
-![screenshot](/alitr/main_app/static/images/alitrjobdetails.png)
+![screenshot](/main_app/static/images/alitrjobdetails.png)
 
 Users can add a Professional skill. 
 
-![screenshot](/alitr/main_app/static/images/alitraddskill.png)
+![screenshot](/main_app/static/images/alitraddskill.png)
 
 Users can edit or delete the Professional skill.
 
-![screenshot](/alitr/main_app/static/images/alitrskilldetail.png)
+![screenshot](/main_app/static/images/alitrskilldetail.png)
 
 
 
@@ -53,7 +53,7 @@ Users can edit or delete the Professional skill.
 
 
 ## ERD
-![screenshot](/alitr/main_app/static/images/alitrerds.png)
+![screenshot](/main_app/static/images/alitrerds.png)
 
 
 An important part of our planning process was to determine the data needs of our application.
@@ -66,16 +66,19 @@ The third "Status" model, which "Job_application" has a One-to-Many relationship
 
 ## Pitch Deck
 
-Click [here]() to see our pitch deck
+Click [here](https://docs.google.com/presentation/d/19crljcsBgCRyAg5mleOzzwwlLGEVdwZPkZUDIxCQs_4/edit?usp=sharing) to see our pitch deck
 
 -----
 ## Trello Board
 
-Click [here]() to see our Trello Board
+Click [here](https://trello.com/b/VTVjj9L5/project-4) to see our Trello Board
 
 -----
 ## Future Enhancements
-- Responsive design
+- Responsive design for mobile/tablet
+- User being able to upload attachments to a job application, such as PDFs (resumes, cover letters, etc)
+- Adding a "Company" model linked to the job applications, where users can add information and notes about companies they apply to, and can view applications by Company, should a user submit more than one application to the same company
+- A default status ("Applied") is created and linked to a job application when a new job application is created -- currently, the user must manually add statuses after the creation of a job app.
 
 ## Challenges
 - Extending Django's User model to add fields for users to sign up or sign in using email.
