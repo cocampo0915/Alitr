@@ -43,11 +43,11 @@ Users can edit, or delete the job application as well as the status and date.
 
 Users can view their profile page
 
-![screenshot](/main_app/static/images/alitauserprofile.png)
+![screenshot](/main_app/static/images/alitauserprofile.PNG)
 
 Users can update their profile page to add a photo, or add/change information
 
-![screenshot](/main_app/static/images/alitruserprofileupdate.png)
+![screenshot](/main_app/static/images/alitruserprofileupdate.PNG)
 
 Users can add a Professional skill, which will be displayed on their profile page. 
 
