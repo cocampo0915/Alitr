@@ -7,6 +7,15 @@ ALITR is a full-stack web application built with Python-based Django framework t
 
 [Click here](https://alitr.herokuapp.com/) to see the app on Heroku!
 
+## Technologies Used
+- HTML5
+- CSS3
+- JavaScript
+- Python
+- Django
+- PostgreSQL
+-----
+
 ## App Screenshots and WireFrames
 
 Home Page
@@ -54,14 +63,7 @@ Secondary is the "User" model, which has a One-to-Many relationship with "Job_ap
 The third "Status" model, which "Job_application" has a One-to-Many relationship with as well as the "Attachment" model. 
 
 
-## Technologies Used
-- HTML5
-- CSS3
-- JavaScript
-- Python
-- Django
-- PostgreSQL
------
+
 ## Pitch Deck
 
 Click [here]() to see our pitch deck

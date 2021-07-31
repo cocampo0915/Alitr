@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.urls import reverse #matching url
+from PIL import Image
 
 # Create your models here.
 class Job_application(models.Model):
@@ -81,8 +82,6 @@ class Skill(models.Model):
     ('5','Level 5'),
   )
 
-
-  
   name = models.CharField(
     max_length=100,
     blank=True
@@ -93,12 +92,32 @@ class Skill(models.Model):
     default=SKILL[0][0]
   )
 
-
-  
-
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   def __str__(self):
     return self.name
 
   def get_absolute_url(self):
     return reverse('skills_detail', kwargs={'pk': self.id})
+
+#Profile Model 
+class Pro(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE) # Delete profile when user is deleted
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    experience = models.TextField(max_length=1000, blank=True)
+    goals = models.TextField(max_length=1000, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} Pro' #show how we want it to be displayed
+    class Meta:
+        verbose_name_plural = "pro"
+    # Override the save method of the model
+    def save(self, *args, **kwargs):
+        super(Pro, self).save(*args, **kwargs)
+
+        img = Image.open(self.image.path) # Open image
+        
+        # resize image
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size) # Resize image
+            img.save(self.image.path) # Save it again and override the larger image

@@ -2,9 +2,20 @@
 
 {% block content %}
   {% if object %}
-    <h1>Edit <span class="teal-text">Profile</span></h1>
+    <h1>Edit <span class="teal-text">Skill</span></h1>
   {% else %}
     <h1>Add Skill</h1>
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">Hello {{ user.username }}</h2>
+        </div>
+      </div>
+      <!-- FORM HERE -->
+    </div>
+
+
   {% endif %}
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
   <form action="" method="POST">

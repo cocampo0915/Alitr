@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="center">Profile</h3>
+
+
+<div class="card">
+    <div class="card-content">
+        <img src="/media/{{ profile.image }}" alt="{{ profile.image }}">
+        <p>Username: {{ user.username }}</p>
+        <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <a href="{% url 'profile_update' %}"><button class="btn">Edit Profile</button></a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-content">
+        <h5>Experience</h5>
+        <p>{{ profile.experience }}</p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-content">
+        <h5>Goals</h5>
+        <p>{{ profile.goals }}</p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-content">
+        <h5>Skills</h5>
+        {% for skill in skills %}
+        <p>{{ skill.name }}, {{ skill.level }}</p>
+        
+        {% endfor %}
+        <a href="{% url 'skills_create' %}"><button class="btn">Add Skill</button></a>
+        <a href="{% url 'skills_index' %}"><button class="btn">Edit Skills</button></a>
+    </div>
+</div>
+
+
+
+{% endblock %}
