@@ -26,7 +26,7 @@ Home Page
 
 Login and Sign up Page
 
-![screenshot](/main_app/static/images/alitrloginandsignup.png)
+![screenshot](/main_app/static/images/alitrfinalsignup.png)
 
 After user is logged in, the 'Add job application' Page
 
