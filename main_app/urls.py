@@ -22,13 +22,11 @@ urlpatterns = [
     # Company
 
     # User
-    #path('accounts/signup', views.signup, name='signup'),
     path('accounts/signup', views.signup, name='signup'),
     #Profile 
     path('profile/update',views.profile_update, name='profile_update'),
     path('profile/',views.profile, name='profile'),
-
-
+    path('profile/<int:pro_id>/add_photo/', views.add_photo, name='add_photo'),
 
     #Skills
     path('skills/', views.SkillList.as_view(), name='skills_index'),

@@ -1,14 +1,20 @@
 from django.http.response import HttpResponseRedirect
 from .forms import StatusForm
-from .models import Job_application, Status,Skill
+from .models import Job_application, Status,Skill, Pro, Photo
 from os import error
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm# Import the form we just created
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm # Import the form we just created
 
+# for AWS
+import boto3
+import uuid
+# AWS constants
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+BUCKET = 'alitr'
 
 # imports for user authentication
 from django.contrib.auth.models import User
@@ -62,22 +68,6 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-
-
-'''def signup(request):
-    error_message = ''
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('index')
-        else:
-            error_message = 'Invalid signup data - please try again'
-    
-    form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message })'''
-
 class JobCreate(CreateView):
     model = Job_application
     fields = ['name', 'company', 'location', 'date', 'url', 'requirements', 'notes']
@@ -129,7 +119,7 @@ def delete_status(request, status_id):
 
     return render(request, 'status/delete.html', {'status': status})
 
-#ProfileViews
+# Skill Views
 class SkillList(LoginRequiredMixin, ListView):
   model = Skill
 
@@ -184,10 +174,13 @@ def profile_update(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.pro)
 
+    photo = Photo.objects.filter(profile=request.user.pro).last()
+
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'profile': request.user.pro
+        'profile': request.user.pro,
+        'photo': photo
     }
 
     return render(request, 'profile/update.html', context)
@@ -195,5 +188,28 @@ def profile_update(request):
 def profile(request):
     profile = request.user.pro
     skills = Skill.objects.filter(user=request.user)
+    photo = Photo.objects.filter(profile=request.user.pro).last()
 
-    return render(request, 'profile/index.html', {'profile': profile, 'user': request.user, 'skills': skills })
+    return render(request, 'profile/index.html', {
+        'profile': profile, 
+        'user': request.user, 
+        'skills': skills,
+        'photo': photo,
+    })
+
+def add_photo(request, pro_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo(url=url, profile_id=pro_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+
+    return redirect('profile')

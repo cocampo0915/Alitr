@@ -14,6 +14,8 @@ ALITR is a full-stack web application built with Python-based Django framework t
 - Python
 - Django
 - PostgreSQL
+- AWS S3
+
 -----
 
 ## App Screenshots and WireFrames
@@ -34,11 +36,20 @@ After a job application is added, it is categorized under 'New Jobs', 'In Progre
 
 ![screenshot](/main_app/static/images/alitralljobs.png)
 
+
 Users can edit, or delete the job application as well as the status and date. 
 
 ![screenshot](/main_app/static/images/alitrjobdetails.png)
 
-Users can add a Professional skill. 
+Users can view their profile page
+
+![screenshot](/main_app/static/images/alitauserprofile.png)
+
+Users can update their profile page to add a photo, or add/change information
+
+![screenshot](/main_app/static/images/alitruserprofileupdate.png)
+
+Users can add a Professional skill, which will be displayed on their profile page. 
 
 ![screenshot](/main_app/static/images/alitraddskill.png)
 
@@ -48,7 +59,7 @@ Users can edit or delete the Professional skill.
 
 
 
-
+-----
 
 
 
@@ -60,7 +71,9 @@ An important part of our planning process was to determine the data needs of our
 
 The main data entity of this web application is the "Job_application" model.
 Secondary is the "User" model, which has a One-to-Many relationship with "Job_application".
-The third "Status" model, which "Job_application" has a One-to-Many relationship with as well as the "Attachment" model. 
+The third "Status" model, which "Job_application" has a One-to-Many relationship.
+The "User" model was also extended with a "Profile" model, which it has a One-to-One relationship with. A separate "Photo" model was also made to handle uploading of profile pictures, and has a One-to-Many relationship with "Profile".
+"Skill" is the last model, which has a One-to-Many relationship with "User", and is displayed as part of the user profile.
 
 
 

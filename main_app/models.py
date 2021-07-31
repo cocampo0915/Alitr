@@ -124,3 +124,11 @@ class Pro(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size) # Resize image
             img.save(self.image.path) # Save it again and override the larger image
+
+# Profile Photo Model
+class Photo(models.Model):
+  url = models.CharField(max_length=200)
+  profile = models.ForeignKey(Pro, on_delete=models.CASCADE)
+
+  def __str__(self):
+        return f"Photo for profile_id: {self.profile_id} @{self.url}"
