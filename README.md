@@ -5,7 +5,7 @@ ALITR is a full-stack web application built with Python-based Django framework t
 
 ## Getting Started
 
-[Click here](https://alitr.herokuapp.com/) to see the app on Heroku!
+[Click here](https:/.herokuapp.com/) to see the app on Heroku!
 
 ## Technologies Used
 - HTML5
@@ -20,31 +20,31 @@ ALITR is a full-stack web application built with Python-based Django framework t
 
 Home Page
 
-![screenshot](/alitr/main_app/static/images/alitrhomepage.png)
+![screenshot](/main_app/static/images/alitrhomepage.png)
 
 Login and Sign up Page
 
-![screenshot](/alitr/main_app/static/images/alitrloginandsignup.png)
+![screenshot](/main_app/static/images/alitrloginandsignup.png)
 
 After user is logged in, the 'Add job application' Page
 
-![screenshot](/alitr/main_app/static/images/alitraddjob.png)
+![screenshot](/main_app/static/images/alitraddjob.png)
 
 After a job application is added, it is categorized under 'New Jobs', 'In Progress', or 'Outcome'. User can update the status of the job application. 
 
-![screenshot](/alitr/main_app/static/images/alitralljobs.png)
+![screenshot](/main_app/static/images/alitralljobs.png)
 
 Users can edit, or delete the job application as well as the status and date. 
 
-![screenshot](/alitr/main_app/static/images/alitrjobdetails.png)
+![screenshot](/main_app/static/images/alitrjobdetails.png)
 
 Users can add a Professional skill. 
 
-![screenshot](/alitr/main_app/static/images/alitraddskill.png)
+![screenshot](/main_app/static/images/alitraddskill.png)
 
 Users can edit or delete the Professional skill.
 
-![screenshot](/alitr/main_app/static/images/alitrskilldetail.png)
+![screenshot](/main_app/static/images/alitrskilldetail.png)
 
 
 
@@ -53,7 +53,7 @@ Users can edit or delete the Professional skill.
 
 
 ## ERD
-![screenshot](/alitr/main_app/static/images/alitrerds.png)
+![screenshot](/main_app/static/images/alitrerds.png)
 
 
 An important part of our planning process was to determine the data needs of our application.
@@ -71,7 +71,7 @@ Click [here](https://docs.google.com/presentation/d/19crljcsBgCRyAg5mleOzzwwlLGE
 -----
 ## Trello Board
 
-Click [here](https://trello.com/b/VTVjj9L5/project-4-alitr) to see our Trello Board
+Click [here](https://trello.com/b/VTVjj9L5/project-4) to see our Trello Board
 
 -----
 ## Future Enhancements
