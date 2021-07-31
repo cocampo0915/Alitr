@@ -68,6 +68,7 @@ class Status(models.Model):
   # change the default sort
   class Meta:
     ordering = ['-date']
+    verbose_name_plural = 'Status'
 
 # placeholder for Company model if possible -CO
 
@@ -97,7 +98,7 @@ class Skill(models.Model):
     return self.name
 
   def get_absolute_url(self):
-    return reverse('skills_detail', kwargs={'pk': self.id})
+    return reverse('profile')
 
 #Profile Model 
 class Pro(models.Model):
@@ -108,8 +109,10 @@ class Pro(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Pro' #show how we want it to be displayed
+    
     class Meta:
-        verbose_name_plural = "pro"
+        verbose_name_plural = 'pro'
+    
     # Override the save method of the model
     def save(self, *args, **kwargs):
         super(Pro, self).save(*args, **kwargs)

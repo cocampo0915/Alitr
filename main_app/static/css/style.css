@@ -62,7 +62,7 @@ a:hover {
   color: #CB7F29
 }
 
-.job-details {
+.job-details, .profile-details {
   font-size: 1.3rem;
 }
 
@@ -84,4 +84,18 @@ a:hover {
 .team{
   display:flex;
   width: 100%;
+}
+
+.profile-card {
+  position: relative;
+}
+
+.edit-profile-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.skills-table {
+  padding: 2rem;
 }
