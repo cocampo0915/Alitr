@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
-<h1>Update Profile</h1>
-
+<h3 class="center">Update Profile</h1>
+    <a href="{% url 'profile' %}">&larr; Return</a>
+    <br>
+<label for="profile" class="active">Profile Image:</label>
+<br>
+    {% if photo %}
+      <img src="{{photo.url}}" alt="{{request.user.first_name}}" class="profile-img">
+    {% else %}
+      <img src="{% static 'images/default.png' %}" alt="default image" class="profile-img">
+    {% endif %}
+    <form action="{% url 'add_photo' profile.id %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="photo-file">
+      <br>
+      <br>
+      <input type="submit" class="btn" value="Upload Photo">
+    </form>
+    <br>
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ u_form.as_p }}

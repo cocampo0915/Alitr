@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1> User Skills</h1>
+<h3 class="center"> User Skills</h3>
 
 {% for skill in skill_list %}
+  {% if skill.user == request.user %}
   <a href="{% url 'skills_detail' skill.id %}">
     <div class="card">
         <div class="card-content">
@@ -12,6 +13,7 @@
         </div>
     </div>
   </a>
+  {% endif %}
 {% endfor %}
 
 {% endblock %}
