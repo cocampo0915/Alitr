@@ -1,0 +1,109 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #E1EDF2;
+  }
+  
+  nav, footer.page-footer {
+      background-color: #3A474E;
+  }
+
+  nav .brand-logo {
+    display: flex;
+    justify-content: center;
+    padding-left: 1.5rem;
+    letter-spacing: 0.4rem;
+    font-size: 3rem;
+    
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+ 
+select {
+  display: initial;
+}
+
+  footer.page-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	  bottom: 0;
+	  width: 100%;
+    height: 5vh;
+    padding-top: 0px;
+    margin-top: 2rem;
+  }
+
+.homepage-wrapper {
+  display: flex;
+  height: 85vh;
+}
+
+.homepage-elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  font-size: 1.3rem;
+}
+
+.homepage-elements img {
+  height: 12rem;
+}
+
+.homepage-elements h1 {
+  font-size: 5rem;
+}
+
+a:hover {
+  color: #CB7F29
+}
+
+.job-details, .profile-details {
+  font-size: 1.3rem;
+}
+
+.jassmin{
+  flex: 1;
+  padding: 1rem;
+  margin: 2px;
+
+
+}
+
+.camille{
+  flex: 1;
+  padding: 1rem;
+  margin: 2px;
+
+}
+
+.team{
+  display:flex;
+  width: 100%;
+}
+
+.profile-card {
+  position: relative;
+}
+
+.profile-img {
+  border-radius: 50%;
+  object-fit: cover;
+  width:300px;
+  height:300px;
+}
+
+.edit-profile-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.skills-table {
+  padding: 2rem;
+}
