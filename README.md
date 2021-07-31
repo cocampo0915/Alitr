@@ -5,7 +5,7 @@ ALITR is a full-stack web application built with Python-based Django framework t
 
 ## Getting Started
 
-[Click here](https:/.herokuapp.com/) to see the app on Heroku!
+[Click here](https://alitr.herokuapp.com/) to see the app on Heroku!
 
 ## Technologies Used
 - HTML5
